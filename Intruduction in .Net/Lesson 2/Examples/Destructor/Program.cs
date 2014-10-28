@@ -10,10 +10,11 @@ namespace Destructor
     {
         static void Main(string[] args)
         {
-            var horse = new Horse(42);
-            //Console.ReadKey();
-            //GC.Collect();
-            //Console.ReadKey();
+            new Horse(42);
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            Console.WriteLine("after gc.collect");
+            Console.ReadKey();
         }
     }
 
@@ -30,7 +31,5 @@ namespace Destructor
             Console.WriteLine("I'm leaving and this is my magic number: " + _magicNumber);
             Console.ReadKey();
         }
-
-
     }
 }

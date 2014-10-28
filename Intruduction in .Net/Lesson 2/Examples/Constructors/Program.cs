@@ -8,40 +8,60 @@ namespace Constructors
 {
     class Program
     {
-        private class Animal
+        protected class Animal
         {
             public int bonesNum;
-            public Animal(int bonesNum)
+            protected Animal(int bonesNum)
             {
                 this.bonesNum = bonesNum;
             }
+
+            public static Animal Leech()
+            {
+                return new Animal(0);
+            }
         }
 
-        protected class  Mammal : Animal
+        protected class Mammal : Animal
         {
             public readonly int Pealogy;
-            public Mammal(int pealagy):base(255)
-	        {
+            public Mammal(int pealagy)
+                : base(255)
+            {
                 Pealogy = pealagy;
-	        }
+            }
         }
-        public class Horse : Mammal
+        protected class Horse : Mammal
         {
             public int StomachSize;
 
-            public Horse(int stomachSize):base(3)
+            public Horse(int stomachSize)
+                : base(3)
             {
                 StomachSize = stomachSize;
             }
         }
 
+
+        
         static void Main(string[] args)
         {
-            Horse horse = new Horse(11);
-            Console.WriteLine("Our horse has stomach of " + horse.StomachSize
-                             + " and its pealogy is " + horse.Pealogy
-                             + " and it haas " + horse.bonesNum + " bones");
+            Animal horse = new Mammal(100);
 
+            if(horse is Horse)
+                Console.WriteLine("yes it is");
+            else
+                Console.WriteLine("no");
+
+
+            Horse expected_horse = horse as Horse;
+
+            Console.WriteLine("Our horse has stomach of " + expected_horse.StomachSize
+                             + " and its pealogy is " + expected_horse.Pealogy
+                             + " and it has " + horse.bonesNum + " bones");
+
+            Animal an = Animal.Leech();
+            Console.WriteLine("Animal has " + an.bonesNum + " bones");
             Console.ReadKey();
         }
     }

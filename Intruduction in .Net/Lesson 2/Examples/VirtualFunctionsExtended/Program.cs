@@ -6,36 +6,53 @@ using System.Threading.Tasks;
 
 namespace VirtualFunctionsExtended
 {
-    using System;
-    class A
+    class Rhomb : Rectangle
     {
-        public virtual void F() { Console.WriteLine("A.F"); }
+        public int diagA;
+        public int diagB;
+        new public int CalcSquare() { return 10; }
     }
-    class B : A
+
+    class Geometry
     {
-        public override void F() { Console.WriteLine("B.F"); }
+        public int CalcSquare() { return 0; }
     }
-    class C : B
+    class Rectangle : Geometry
     {
-        new public virtual void F() { Console.WriteLine("C.F"); }
+        public int heigh = 10;
+        public int width = 5;
+        public int CalcSquare() { return 5; }
     }
-    class D : C
+
+    class Square : Rhomb
     {
-        public override void F() { Console.WriteLine("D.F"); }
+        public int size;
+
+        public int CalcSquare() { return 15; }
+
+        public override string ToString()
+        {
+            return "i'm a square";
+        }
     }
     class Test
     {
         static void Main()
         {
-            D d = new D();
-            A a = d;
-            B b = d;
-            C c = d;
-            a.F();
-            b.F();
-            c.F();
-            d.F();
-            Console.ReadLine();
+            int a = 10;
+            int b = 5;
+            a = b;
+            b = 100;
+
+            Rhomb ra = new Square();
+            Console.WriteLine(ra.diagA);
+
+            Rhomb sq = ra;
+            ra.diagA = 100;
+
+            Console.WriteLine(sq.diagA);
+
+            Console.ReadKey();
         }
     }
 }
