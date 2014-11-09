@@ -22,12 +22,15 @@ class NullAnimal : IAnimal
 
 static class Program
 {
+    private static IAnimal GetAnimal()
+    {
+        return new NullAnimal();
+    }
+
     static void Main()
     {
-        IAnimal dog = new Dog();
+        IAnimal dog = GetAnimal();
         dog.MakeSound(); 
-
-        IAnimal unknown = new NullAnimal(); 
-        unknown.MakeSound(); 
+        Console.ReadKey();
     }
 }
