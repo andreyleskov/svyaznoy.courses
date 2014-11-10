@@ -12,6 +12,7 @@ namespace ValueReferenceEquality
         class ExampleClass
         {
             public int Value;
+            private int b ;
             public override bool Equals(object obj)
             {
                 return this.Value == ((ExampleClass)obj).Value;
