@@ -16,6 +16,16 @@ namespace ValueReferenceEquality
             {
                 return this.Value == ((ExampleClass)obj).Value;
             }
+
+            public static bool operator ==(ExampleClass a, ExampleClass b)
+            {
+                return a.Equals(b);
+            }
+
+            public static bool operator !=(ExampleClass a, ExampleClass b)
+            {
+                return !(a == b);
+            }
         }
 
         public struct ExampleStruct
@@ -25,8 +35,6 @@ namespace ValueReferenceEquality
 
         static void Main(string[] args)
         {
-
-
 
             int a = 10;
             int b = 10;
@@ -42,16 +50,23 @@ namespace ValueReferenceEquality
                Console.WriteLine("exampleA == exampleB")  ;
 
             if (exampleA.Equals(exampleB))
-                Console.WriteLine("exampleA == exampleB");
- 
-            //ExampleStruct structA;
-            //structA.Value = 10;
-            //ExampleStruct structB;
-            //structB.Value = 10;
+                Console.WriteLine("exampleA equals exampleB");
 
-            //if (structA.Equals(structB))
-            //    Console.WriteLine("structA == structB");
+            if (Object.ReferenceEquals(exampleA,exampleB))
+                Console.WriteLine("a reference equals b");
+            else
+            {
+                Console.WriteLine("a not reference equals b");
+            }
 
+
+            ExampleStruct structA;
+            structA.Value = 10;
+            ExampleStruct structB;
+            structB.Value = 10;
+
+            if (structA.Equals(structB))
+                Console.WriteLine("structA == structB");
 
             Console.ReadKey();
 
