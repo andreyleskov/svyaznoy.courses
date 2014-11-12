@@ -49,7 +49,11 @@ namespace Command
                 case '-': undo = '+'; break;
                 case '*': undo = '/'; break;
                 case '/': undo = '*'; break;
+                case '^': undo = 's'; break;
+                case 's': undo = '^'; break;
                 default: undo = ' '; break;
+                    
+                
             }
             return undo;
         }

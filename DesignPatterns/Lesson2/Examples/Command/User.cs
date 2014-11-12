@@ -39,8 +39,7 @@ namespace Command
         {
 
             // Создаем команду операции и выполняем её
-            Command command = new CalculatorCommand(
-                this._calculator, @operator, operand);
+            Command command = new CalculatorCommand(this._calculator, @operator, operand);
             command.Execute();
 
             if (this._current < this._commands.Count)

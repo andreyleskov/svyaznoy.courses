@@ -12,9 +12,18 @@ namespace ValueReferenceEquality
         class ExampleClass
         {
             public int Value;
+            
             public override bool Equals(object obj)
             {
+                if(obj == null) return false;
+                if(!(obj is ExampleClass)) return false;
+
                 return this.Value == ((ExampleClass)obj).Value;
+            }
+
+            public bool Equals(ExampleClass class)
+            {
+
             }
         }
 
@@ -25,9 +34,6 @@ namespace ValueReferenceEquality
 
         static void Main(string[] args)
         {
-
-
-
             int a = 10;
             int b = 10;
             if (a == b)
@@ -39,10 +45,10 @@ namespace ValueReferenceEquality
             exampleB.Value = 10;
 
             if(exampleA == exampleB)
-               Console.WriteLine("exampleA == exampleB")  ;
+               Console.WriteLine("1 exampleA == exampleB");
 
             if (exampleA.Equals(exampleB))
-                Console.WriteLine("exampleA == exampleB");
+                Console.WriteLine("2 exampleA == exampleB");
  
             //ExampleStruct structA;
             //structA.Value = 10;

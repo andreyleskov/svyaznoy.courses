@@ -3,47 +3,71 @@ using System.Collections.Generic;
 
 namespace Factory
 {
-    abstract class Product
+    abstract class DbConnection
     {
-        abstract public string GetType();
+        abstract public string ExecuteSQL(string sql);
+
+        public int GetINt()
+        {
+            return 1;
+        }
     }
 
-    class ConcreteProductA : Product
+    class Label
     {
-        public override string GetType() { return "ConcreteProductA"; }
+        string Name;
+        string Weight;
+        string Article;
+        //...
+        public static Label OhotaBeerLabel()
+        {
+            return new Lable("Ohota", "0.5 kg", "mega beer");
+        }
+    }
+    
+    class MSSqlConnection : DbConnection
+    {
+        public override string ExecuteSQL(string sql) { return "Executed on mssql " + sql; }
     }
 
-    class ConcreteProductB : Product
+    class OracleConnection : DbConnection
     {
-        public override string GetType() { return "ConcreteProductB"; }
+        public override string ExecuteSQL(string sql) { return "Executed on oracle: " + sql; }
     }
 
-    abstract class Creator
+    abstract class ConnectionCreator
     {
-        public abstract Product FactoryMethod();
+        public abstract DbConnection CreateConnection();
     }
 
-    class ConcreteCreatorA : Creator
+    class MsSlqlCreator : ConnectionCreator
     {
-        public override Product FactoryMethod() { return new ConcreteProductA(); }
+        public override DbConnection CreateConnection() { return new MSSqlConnection(); }
     }
 
-    class ConcreteCreatorB : Creator
+    class OracleCreator : ConnectionCreator
     {
-        public override Product FactoryMethod() { return new ConcreteProductB(); }
+        public override DbConnection CreateConnection() { return new OracleConnection(); }
     }
 
     public class MainApp
     {
         public static void Main()
         {
-            Creator[] creators = { new ConcreteCreatorA(), new ConcreteCreatorB() };
-            foreach (Creator creator in creators)
+            ConnectionCreator[] creators = { new MsSlqlCreator(),
+                                             new OracleCreator() };
+            foreach (ConnectionCreator creator in creators)
             {
-                Product product = creator.FactoryMethod();
-                Console.WriteLine("Created {0}", product.GetType());
+                ExecuteSql(creator);
             }
+
             Console.Read();
+        }
+
+        private static void ExecuteSql(ConnectionCreator creator)
+        {
+            DbConnection product = creator.CreateConnection();
+            Console.WriteLine(product.ExecuteSQL("DROP TABLE STUDENTS"));
         }
     }
 }

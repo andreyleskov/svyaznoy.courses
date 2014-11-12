@@ -10,10 +10,12 @@ namespace Command
             User user = new User();
 
             // Пусть он что-нибудь сделает.
+            
             user.Compute('+', 100);
             user.Compute('-', 50);
             user.Compute('*', 10);
             user.Compute('/', 2);
+            user.Compute('^', 2);
 
             // Отменяем 4 команды
             user.Undo(4);

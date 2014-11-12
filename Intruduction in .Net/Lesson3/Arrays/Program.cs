@@ -11,7 +11,10 @@ namespace Arrays
         static void Main(string[] args)
         {
             // Single-dimensional array (numbers).
-            int[] n1 = new int[4] { 2, 4, 6, 8 };
+            var n1 = new int[4] ;//{ 2, 4, 6, 8 };
+            n1[0] = 2;
+            n1[1] = 4;
+            //.....
             int[] n2 = new int[] { 2, 4, 6, 8 };
             int[] n3 = { 2, 4, 6, 8 };
             // Single-dimensional array (strings).
