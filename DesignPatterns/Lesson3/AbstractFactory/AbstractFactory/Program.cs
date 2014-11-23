@@ -21,21 +21,21 @@ class MainApp
 
 // "AbstractFactory"
 
-abstract class AbstractFactory
+interface AbstractFactory
 {
-    public abstract AbstractProductA CreateProductA();
-    public abstract AbstractProductB CreateProductB();
+     AbstractProductA CreateProductA();
+     AbstractProductB CreateProductB();
 }
 
 // "ConcreteFactory1"
 
 class ConcreteFactory1 : AbstractFactory
 {
-    public override AbstractProductA CreateProductA()
+    public AbstractProductA CreateProductA()
     {
         return new ProductA1();
     }
-    public override AbstractProductB CreateProductB()
+    public AbstractProductB CreateProductB()
     {
         return new ProductB1();
     }
@@ -45,11 +45,11 @@ class ConcreteFactory1 : AbstractFactory
 
 class ConcreteFactory2 : AbstractFactory
 {
-    public override AbstractProductA CreateProductA()
+    public AbstractProductA CreateProductA()
     {
         return new ProductA2();
     }
-    public override AbstractProductB CreateProductB()
+    public AbstractProductB CreateProductB()
     {
         return new ProductB2();
     }
@@ -57,15 +57,15 @@ class ConcreteFactory2 : AbstractFactory
 
 // "AbstractProductA"
 
-abstract class AbstractProductA
+interface AbstractProductA
 {
 }
 
 // "AbstractProductB"
 
-abstract class AbstractProductB
+interface AbstractProductB
 {
-    public abstract void Interact(AbstractProductA a);
+    void Interact(AbstractProductA a);
 }
 
 // "ProductA1"
@@ -78,7 +78,7 @@ class ProductA1 : AbstractProductA
 
 class ProductB1 : AbstractProductB
 {
-    public override void Interact(AbstractProductA a)
+    public void Interact(AbstractProductA a)
     {
         Console.WriteLine(this.GetType().Name +
           " interacts with " + a.GetType().Name);
@@ -95,7 +95,7 @@ class ProductA2 : AbstractProductA
 
 class ProductB2 : AbstractProductB
 {
-    public override void Interact(AbstractProductA a)
+    public void Interact(AbstractProductA a)
     {
         Console.WriteLine(this.GetType().Name +
           " interacts with " + a.GetType().Name);

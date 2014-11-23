@@ -12,9 +12,12 @@ namespace Interfaces
             return "Woof! WWoooooorrrf!";
         }
 
-        public string Name { get
+        public string Name 
         {
-            return "Joy";
-        }}
+            get
+            {
+                return "Joy";
+            }
+        }
     }
 }

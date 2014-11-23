@@ -35,12 +35,11 @@ namespace Proxy
 
         class WeatherServiceProxy:IWeatherService
         {
-
             private Lazy<IWeatherService> _service; 
             private Dictionary<int,Tuple<int,DateTime>> _cache = new Dictionary<int, Tuple<int, DateTime>>();
             private readonly TimeSpan _expirationTime;
 
-            public WeatherServiceProxy(Func<IWeatherService> serviceCreator, TimeSpan expirationTime )
+            public WeatherServiceProxy(Func<IWeatherService> serviceCreator, TimeSpan expirationTime)
             {
                 _expirationTime = expirationTime;
                 _service = new Lazy<IWeatherService>(serviceCreator);
@@ -60,20 +59,26 @@ namespace Proxy
                 _cache[day] = new Tuple<int, DateTime>(serviceValue, DateTime.Now);
                 Console.WriteLine("{2}: Cached new temperature: {0} for day {1}",serviceValue, day, DateTime.Now);
                 return serviceValue;
-
             }
 
         }
         static void Main(string[] args)
         {
-            var weatherService = new WeatherServiceProxy(() => new WeatherService(),TimeSpan.FromSeconds(5));
+            var weatherService = new WeatherServiceProxy(() => new WeatherService(),TimeSpan.FromSeconds(60));
 
+            //var weatherService =  new WeatherService();
+
+            StartTemperatureMonitoring(weatherService);
+        }
+
+        private static void StartTemperatureMonitoring(IWeatherService weatherService)
+        {
             var random = new Random();
             while (true)
             {
                 Thread.Sleep(TimeSpan.FromSeconds(random.Next(2)));
                 int day = random.Next(3);
-                Console.WriteLine("{0}: Getting temperature for day {1}",DateTime.Now,day);
+                Console.WriteLine("{0}: Getting temperature for day {1}", DateTime.Now, day);
                 var temperature = weatherService.GetTemperature(day);
                 Console.WriteLine("{0}: Temperature is {1}", DateTime.Now, temperature);
             }

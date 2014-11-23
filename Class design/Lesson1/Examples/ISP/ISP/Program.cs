@@ -6,60 +6,60 @@ using System.Threading.Tasks;
 
 namespace ISP
 {
+
+    class Duck
+    {
+        public void Run()
+        {
+
+        }
+
+        public void Swim()
+        {
+
+        }
+
+        public string Criak()
+        {
+            return "cryaaa";
+        }
+    }
+
+    class Emu
+    {
+        public void Run()
+        {
+
+        }
+
+        public string Tweet()
+        {
+            return "yaaas";
+        }
+    }
+
+    class Sparrow
+    {
+        public string Fly()
+        {
+            return "fly away";
+        }
+
+        public string Talk()
+        {
+            return "chirick";
+        }
+    }
     public class Program
     {
-        public interface IBird: IFly, ITweet
-        {
-
-        }
-
-        class Emu : ITweet
-        {
-            public void Run()
-            {
-
-            }
-
-            public string Tweet()
-            {
-                return "yaaas";
-            }
-        }
-
-
-        class Sparrow : IBird
-        {
-            public string Fly()
-            {
-                return "fly away";
-            }
-
-            public string Tweet()
-            {
-                return "chirick";
-            }
-        }
-
         static void Main(string[] args)
         {
-            var truebirds = new IBird[] { new Sparrow()};
-            var allbirds = new IBird[] { new Sparrow()};
+            var birdAggregator 
+                = new FlyAggregator(new Sparrow(), new Emu());
 
-            WriteFlyers(truebirds);
-            WriteTweeters(allbirds);
+            birdAggregator.WriteFlyers();
+            birdAggregator.WriteTweeters();
             Console.ReadKey();
         }   
-
-        public static void WriteFlyers(IBird[] birds)
-        {
-            foreach (var bird in birds)
-                Console.WriteLine(bird.Fly());
-        }
-
-        public static void WriteTweeters(IBird[] birds)
-        {
-            foreach (var bird in birds)
-                Console.WriteLine(bird.Tweet());
-        }
     }
 }

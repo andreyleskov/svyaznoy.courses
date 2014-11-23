@@ -1,6 +1,6 @@
 namespace Interfaces
 {
-    public class RealCat : IEat, IMeow, IHaveName
+    public class RealCat: IEat, IMeow, IHaveName
     {
         public string Eat()
         {
@@ -12,9 +12,12 @@ namespace Interfaces
             return "Meaaaaw! Mr Mr";
         }
 
-        public string Name { get
+        public string Name 
         {
-            return "Bonifacii";
-        }}
+            get
+            {
+                return "Bonifacii";
+            }
+        }
     }
 }

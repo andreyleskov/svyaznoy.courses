@@ -39,5 +39,11 @@ namespace Builder
         {
             return _productLabel;
         }
+
+
+        public IPriceSetter StartStrictInit()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

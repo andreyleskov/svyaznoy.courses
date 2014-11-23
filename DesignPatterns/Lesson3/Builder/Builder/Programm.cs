@@ -11,8 +11,8 @@ namespace Builder
             // Create LabelDirector and builders
             LabelDirector labelDirector = new LabelDirector();
 
-            IBuilder b1 = new SpecialSalesLabelBuilder(DateTime.Now);
-            //IBuilder b1 = new SpecialSalesLabelBuilder(new DateTime(2014,1,1));
+            //IBuilder b1 = new SpecialSalesLabelBuilder(DateTime.Now);
+            IBuilder b1 = new SpecialSalesLabelBuilder(new DateTime(2014,1,1));
             IBuilder b2 = new CommonLabelBuilder();
 
             

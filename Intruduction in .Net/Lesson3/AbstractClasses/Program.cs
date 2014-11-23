@@ -40,11 +40,19 @@ namespace AbstractClasses
         {
             return 1.3;
         }
+
+        public override string ToString()
+        {
+            return "east self string";
+        }
     }
 
     public abstract class CarTaxCalculator
     {
-        protected abstract double GetRegionCoefficient();
+        protected virtual double GetRegionCoefficient()
+        {
+            return 1;
+        }
 
         protected virtual string GetName()
         {

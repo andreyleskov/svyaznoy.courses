@@ -1,9 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31010.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherServiceAggregator", "WeatherServiceAggregator\WeatherServiceAggregator.csproj", "{D6D067A9-5562-48BE-B702-61A8577CB699}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCF consumer", "WCF consumer\WCF consumer.csproj", "{51BEB7A7-4E2F-4470-A498-711A089EF494}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D6D067A9-5562-48BE-B702-61A8577CB699} = {D6D067A9-5562-48BE-B702-61A8577CB699}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +20,10 @@ Global
 		{D6D067A9-5562-48BE-B702-61A8577CB699}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6D067A9-5562-48BE-B702-61A8577CB699}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6D067A9-5562-48BE-B702-61A8577CB699}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51BEB7A7-4E2F-4470-A498-711A089EF494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51BEB7A7-4E2F-4470-A498-711A089EF494}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51BEB7A7-4E2F-4470-A498-711A089EF494}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51BEB7A7-4E2F-4470-A498-711A089EF494}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
